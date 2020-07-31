@@ -1,0 +1,61 @@
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using SpectreBlightMod.Projectiles;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
+
+namespace PissAndShitMod.NPCs
+{
+    public class HeheDigIn : ModNPC
+    {
+	    private int GetLaserDamage => 30;
+        public int Timer;
+
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("dig_in_mann");
+        }
+
+        public override void SetDefaults()
+        {
+            npc.lifeMax = 46666;
+            npc.aiStyle = 56;
+			npc.boss = true;
+            npc.damage = 999999999;
+            npc.defense = 28;
+            npc.knockBackResist = 0f;
+            npc.width = 200;
+            npc.height = 260;
+            npc.value = Item.buyPrice(0, 0, 0, 0);
+            npc.npcSlots = 0.5f;
+            npc.lavaImmune = true;
+            npc.noGravity = true;
+            npc.noTileCollide = true;
+            npc.HitSound = SoundID.NPCHit49;
+            npc.DeathSound = SoundID.NPCDeath59;
+            music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/WidePutinMusic");
+        }
+
+        public override void AI()
+        {
+            npc.position += npc.velocity * 0.75f;
+            if (npc.life <= npc.lifeMax * 0.75f)
+            {
+                Main.NewText("by the way... all the trolls calling me retarted... FRICK YOU and ur ableism.......... go read a book & get a life :)");
+                npc.position += npc.velocity * 1.25f;
+            }
+
+            if (npc.life <= npc.lifeMax * 0.25f)
+            {
+                Main.NewText("I'd like to explain some WORDS AND IF YOU BATCHES AIN'T GOT WORDS THEN YOU DON'T KNOW HOW TO DO IT SO STFU GET A FURGING BOOK READ IT AND LEARN WORDS ");
+                npc.position += npc.velocity * 1.75f;
+            }
+        }
+    }
+}
